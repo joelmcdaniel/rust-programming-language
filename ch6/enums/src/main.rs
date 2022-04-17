@@ -24,7 +24,7 @@ impl Message {
         match &self {
             Quit => println!("Message is quitting..."),
             Write(s) => println!("Message is '{}'", s),
-            _ => {}
+            _ => (),
         }
     }
 }
@@ -40,6 +40,9 @@ fn main() {
     let loopback = IpAddr::V6(String::from("::1"));
 
     let m = Message::Write(String::from("hello"));
+    m.call();
+
+    let m = Message::Move { x: 1, y: 2 };
     m.call();
 
     let m = Message::Quit;
